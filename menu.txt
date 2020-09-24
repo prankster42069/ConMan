@@ -1,0 +1,7 @@
+[l]-Display contact list
+[n]-New contact
+[e]-Edit contact
+[d]-Delete contact
+[f]-Search contact
+[s]-Settings
+[q]-Quit
