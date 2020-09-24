@@ -32,6 +32,7 @@ The motto of ConMan is never to let you press a key you don't absolutely have to
 ## Let's get deeper
 
 ### File and folder structure
+[interface] folder contains every text file regarding interface.
 
 ### Config file
 Detailling the config file.
