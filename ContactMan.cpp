@@ -10,46 +10,66 @@ using namespace std;
 
 string VERSION = "0.1alpha";
 
+string COLOR_WELCOME = "lightblue";
+string COLOR_VERSION = "green";
+string COLOR_MENU = "green";
+
+
 void welcome();
 void version();
 void menu();
 char input();
 void test_input();
 void space(int a=1);
-
 void color(string chaine, string color);
-
 void displayTextFile(string a);
 string test_displayTextFile(string a); //test de textdisplay pour qu'il retourne un string au lieu d'afficher avec cout
-
 string getFileContents(ifstream&);
+char submenu(char userInput);
+void message(string message);
+
+void newContact();
+void editContact();
+void deleteContact();
+void searchContact();
+void settings();
+void quit();
 
 int main()
 {
+    char userInput = 'Z';
+    char output = 'Z';
+
     welcome();
     version();
     space();
     menu();
+
+    while (output != 'q')
+    {
+        userInput = input();
+        output = submenu(userInput);
+    }
 }
 
 //affiche le message de bienvenue
 void welcome()
 {
-    color(test_displayTextFile("welcome.txt"),"lightblue");
+    color(test_displayTextFile("interface/welcome.txt"),COLOR_WELCOME);
 }
 
 //affiche la version de CM
 void version()
 {
     //utilise le string constant 'VERSION', déclaré avant le main
-    color("Version: ", "green");
-    color(VERSION, "green");
+    color("Version: ", COLOR_VERSION);
+    color(VERSION, COLOR_VERSION);
 }
 
 //affiche le menu qui liste les commandes possibles
 void menu()
 {
-    displayTextFile("menu.txt");
+    displayTextFile("interface/menu.txt");
 }
 
 void test_input()
@@ -76,7 +96,9 @@ char input()
     {
         a = _getch();
         cout << a << endl;
-        if (a == 'n' || a == 'N')
+        if (a == 'l' || a == 'L')
+        {letter = 'l';}
+        else if (a == 'n' || a == 'N')
         {letter = 'n';}
         else if (a == 'e' || a == 'E')
         {letter = 'e';}
@@ -90,7 +112,6 @@ char input()
         {letter = 'q';}
 
     } while (letter == 'Z');
-    cout << "DONE" << endl;
 
     return letter;
 }
@@ -153,7 +174,6 @@ string test_displayTextFile(string a)
 //permet d'afficher un texte en couleur
 //premier argument = texte à colorer
 //deuxième argument = couleur à adopter
-
 void color(string chaine, string color)
 {
     int i = 0;
@@ -171,7 +191,91 @@ void color(string chaine, string color)
     {i = 35;}
     else if (color == "lightblue")
     {i = 36;}
-    //il reste des couleurs à inclure
+    //autres couleurs à ajouter
 
     cout << "\033[" << i << "m" << chaine << "\033[0m" << endl;
+}
+
+//aiguille vers la bonne fonction en fonction de la lettre entrée
+char submenu(char userInput)
+{
+    char answer = 'Z';
+
+    switch (userInput)
+    {
+    case 'l':
+        cout << "liste contacts" << endl;
+        break;
+    case 'n':
+        cout << "new contact" << endl;
+        break;
+    case 'e':
+        cout << "edit contact" << endl;
+        break;
+    case 'd':
+        cout << "delete contact" << endl;
+        break;
+    case 'f':
+        cout << "search contact" << endl;
+        break;
+    case 's':
+        answer = 's';
+        settings();
+        break;
+    case 'q':
+        answer = 'q';
+        quit();
+        break;
+    }
+
+    return answer;
+}
+
+void newContact()
+{
+
+}
+
+void editContact()
+{
+
+}
+
+void deleteContact()
+{
+
+}
+
+void searchContact()
+{
+
+}
+
+void settings()
+{
+    char userInput = 'Z';
+    char output = 'Z';
+
+    displayTextFile("interface/settings.txt");
+
+    while (userInput != 'q')
+    {
+        userInput = input();
+    }
+
+    message("EXITING SETTINGS MENU");
+    //paramètres à définir
+
+}
+
+void quit()
+{
+    color(test_displayTextFile("interface/bye.txt"),"red");
+}
+
+//affiche simplement un message
+//permet de s'éviter de taper cout blablabla à chaque fois
+void message(string message)
+{
+    cout << message << endl;
 }
