@@ -12,6 +12,8 @@ You don't even need to press Enter!
 
 The motto of ConMan is never to let you press a key you don't absolutely have to press.
 
+Tested working on Visual Studio 2019.
+It seems like the colors in the terminal don't make Code::Blocks happy. Removing and/or modifying everything regarding color might make it work.
 
 ## Main functionalities
 ### List contacts
