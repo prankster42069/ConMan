@@ -1,0 +1,8 @@
+[a]-
+[z]-
+[e]-
+[r]-
+[t]-
+[y]-
+[u]-Erase Database
+[q]-Quit to main menu
