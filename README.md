@@ -17,7 +17,7 @@ The motto of ConMan is never to let you press a key you don't absolutely have to
 
 
 ## Main functionalities
-### - List contacts ###
+### - List contacts
 ### - New contact
 ### - Edit contact
 ### - Delete contact
@@ -33,3 +33,5 @@ The motto of ConMan is never to let you press a key you don't absolutely have to
 
 ### Config file
 Detailling the config file.
+
+> test
