@@ -32,7 +32,9 @@ The motto of ConMan is never to let you press a key you don't absolutely have to
 ## Let's get deeper
 
 ### File and folder structure
-[interface] folder contains every text file regarding interface.
+- [interface] folder contains every text file regarding interface.
+- [config] folder contains every configuration file, if you don't want to configure everything from the app itself.
+- [database] folder contains the contact database. You get a file containing ALL contacts, and one file per contact.
 
 ### Config file
 Detailling the config file.
