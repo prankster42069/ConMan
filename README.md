@@ -19,15 +19,15 @@ The motto of ConMan is never to let you press a key you don't absolutely have to
 ## Main functionalities
 ### - List contacts
 
-### New contact
+### - New contact
 
-### Edit contact
+### - Edit contact
 
-### Delete contact
+### - Delete contact
 
-### Search contact
+### - Search contact
 
-### Settings
+### - Settings
 
 ## Let's get deeper
 
