@@ -2,7 +2,7 @@ Tested working on Visual Studio 2019.
 It seems like the colors in the terminal don't make Code::Blocks happy. Removing and/or modifying everything regarding color might make it work.
 
 # ConMan
-A minimalistic and efficient contact manager in terminal.
+A minimalistic and efficient contact manager (ConMan for short).
 This project is also aimed at making me more comfortable with C++ programming.
 
 ## Overview
