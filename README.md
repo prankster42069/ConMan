@@ -41,10 +41,10 @@ Detailling the config file.
 Config file is empty for the moment, will be used soon.
 
 ## You can help the project!
+### I still need to figure out the best way for users to send their feedback, so help section is useless for now lol
 You can help the ConMan projet in several ways :
 ### Provide your suggestions:
 The program is still quite young, so I probably missed major things along the way.
 ### Help with translations:
 An efficient language changing system still needs to be configured, but it will come soon.
 I'm quite a language guy (that has two meanings as I'm a programmer... :-) ), so I should be able to maintain the following languages by myself for now : French, English, Spanish, German and Esperanto.
-If you are good enough in any other language that could be included into the program, please contact me through GitHub.
