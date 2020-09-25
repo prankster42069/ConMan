@@ -19,6 +19,10 @@ The motto of ConMan is never to let you press a key you don't absolutely have to
 ## Main functionalities
 ### - List contacts
 ### - New contact
+This function allows you to create new contacts (it's a contact manager after all).
+
+It takes the provided fields in the [fields/fields.txt] file and ask for user entry for each of them.
+
 ### - Edit contact
 ### - Delete contact
 ### - Search contact
