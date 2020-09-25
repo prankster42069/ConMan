@@ -28,6 +28,7 @@ string getFileContents(ifstream&);
 char submenu(char userInput);
 void message(string message);
 
+void listContacts();
 void newContact();
 void editContact();
 void deleteContact();
@@ -43,13 +44,15 @@ int main()
     welcome();
     version();
     space();
-    menu();
 
-    while (output != 'q')
+    do
     {
+        space();
+        menu();
+
         userInput = input();
         output = submenu(userInput);
-    }
+    } while (output != 'q');
 }
 
 //affiche le message de bienvenue
@@ -95,7 +98,6 @@ char input()
     do
     {
         a = _getch();
-        cout << a << endl;
         if (a == 'l' || a == 'L')
         {letter = 'l';}
         else if (a == 'n' || a == 'N')
@@ -110,6 +112,8 @@ char input()
         {letter = 's';}
         else if (a == 'q' || a == 'Q')
         {letter = 'q';}
+        else if (a == 'y' || a == 'Y')
+        {letter = 'y';}
 
     } while (letter == 'Z');
 
@@ -204,22 +208,21 @@ char submenu(char userInput)
     switch (userInput)
     {
     case 'l':
-        cout << "liste contacts" << endl;
+        listContacts();
         break;
     case 'n':
-        cout << "new contact" << endl;
+        newContact();
         break;
     case 'e':
-        cout << "edit contact" << endl;
+        editContact();
         break;
     case 'd':
-        cout << "delete contact" << endl;
+        deleteContact();
         break;
     case 'f':
-        cout << "search contact" << endl;
+        searchContact();
         break;
     case 's':
-        answer = 's';
         settings();
         break;
     case 'q':
@@ -231,9 +234,91 @@ char submenu(char userInput)
     return answer;
 }
 
-void newContact()
+void listContacts()
 {
 
+}
+
+//fonction pour créer un nouveau contact
+void newContact()
+{
+    bool ok = false;
+
+    do {
+        bool firstSpace = true;
+        bool secondSpace = true;
+
+        string field1, field2;
+
+        string current_field = "";
+        string answer;
+        string rapport = "";
+
+        //prélèvement des champs dans le fichier 'fields'
+        string fields = test_displayTextFile("fields/fields.txt");
+        message(fields);
+
+        for (int i = 0; i < fields.length(); i++)
+        {
+            if (fields[i] == 32 || i == fields.length() - 1) //si la boucle rencontre un espace
+            {
+                cout << "[" << current_field << "]" << "?" << endl;
+                cin >> answer;
+
+                //ajout du champ + sa réponse
+                rapport += current_field;
+                rapport += " : ";
+                rapport += answer;
+                rapport += "\n";
+
+                //prélèvement des deux premiers champs pour les inclure dans le nom du fichier
+                if (firstSpace == true)
+                {
+                    field1 = answer;
+                    firstSpace = false;
+                }
+                else if (secondSpace == true)
+                {
+                    field2 = answer;
+                    secondSpace = false;
+                }
+
+                //réinitialisation réponse & champ une fois la réponse rentrée
+                current_field = "";
+                answer == "";
+            }
+            else
+            {
+                current_field += fields[i];
+            }
+        }
+
+    space();
+    color("=====CONTACT FILE=====","yellow");
+    message(rapport);
+    color("Is everything ok?[y/n/q]","red");
+    space();
+
+    char userInput;
+    userInput = input();
+    if (userInput == 'y')
+    {
+        ok = true;
+
+        string filename = "database/" + field1 + " " + field2 + ".txt";
+        ofstream MyFile(filename);
+        MyFile << rapport;
+
+        MyFile.close();
+
+        color("CONTACT CREATED!","green");
+    }
+    else if (userInput == 'n')
+    {message("Let's start from the beginning, shall we?");}
+    else if (userInput == 'q')
+    {ok = true;}
+
+    } while (ok == false);
 }
 
 void editContact()
