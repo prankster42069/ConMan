@@ -35,6 +35,7 @@ void deleteContact();
 void searchContact();
 void settings();
 void quit();
+void wrongKey();
 
 int main()
 {
@@ -49,6 +50,7 @@ int main()
     {
         space();
         menu();
+        space();
 
         userInput = input();
         output = submenu(userInput);
@@ -72,6 +74,7 @@ void version()
 //affiche le menu qui liste les commandes possibles
 void menu()
 {
+    color("=======MAIN MENU=======", "purple");
     displayTextFile("interface/menu.txt");
 }
 
@@ -163,7 +166,7 @@ void displayTextFile(string a)
 {
     ifstream Reader(a); // a est le nom du fichier, bien indiquer l'extension
     string Art = getFileContents(Reader);
-    cout << Art << endl;
+    cout << Art;
     Reader.close();
 }
 
@@ -203,40 +206,48 @@ void color(string chaine, string color)
 //aiguille vers la bonne fonction en fonction de la lettre entrée
 char submenu(char userInput)
 {
+    bool cont = true;
     char answer = 'Z';
 
-    switch (userInput)
-    {
-    case 'l':
-        listContacts();
-        break;
-    case 'n':
-        newContact();
-        break;
-    case 'e':
-        editContact();
-        break;
-    case 'd':
-        deleteContact();
-        break;
-    case 'f':
-        searchContact();
-        break;
-    case 's':
-        settings();
-        break;
-    case 'q':
-        answer = 'q';
-        quit();
-        break;
-    }
+        switch (userInput)
+        {
+        case 'l':
+            listContacts();
+            break;
+        case 'n':
+            newContact();
+            break;
+        case 'e':
+            editContact();
+            break;
+        case 'd':
+            deleteContact();
+            break;
+        case 'f':
+            searchContact();
+            break;
+        case 's':
+            settings();
+            break;
+        case 'q':
+            answer = 'q';
+            quit();
+            break;
+        default:
+            wrongKey();
+            cont = false;
+            break;
+        }
 
     return answer;
 }
 
 void listContacts()
 {
-
+    space();
+    color("BEGINNING OF THE LIST", "green");
+    displayTextFile("database/contact_list.txt");
+    color("END OF THE LIST", "green");
 }
 
 //fonction pour créer un nouveau contact
@@ -245,6 +256,8 @@ void newContact()
     bool ok = false;
 
     do {
+        color("======NEW CONTACT======", "green");
+
         bool firstSpace = true;
         bool secondSpace = true;
 
@@ -256,7 +269,6 @@ void newContact()
 
         //prélèvement des champs dans le fichier 'fields'
         string fields = test_displayTextFile("fields/fields.txt");
-        message(fields);
 
         for (int i = 0; i < fields.length(); i++)
         {
@@ -307,9 +319,16 @@ void newContact()
 
         string filename = "database/" + field1 + " " + field2 + ".txt";
         ofstream MyFile(filename);
+        
+        string existing_file;
         MyFile << rapport;
-
         MyFile.close();
+
+        //ajout du nom du contact à la liste des contacts 'contact_list.txt'
+        ofstream MyFile1("database/contact_list.txt");
+
+        MyFile1 << field1 + " " + field2 + "\n";
+        MyFile1.close();
 
         color("CONTACT CREATED!","green");
     }
@@ -338,17 +357,22 @@ void searchContact()
 
 void settings()
 {
+    space();
+
     char userInput = 'Z';
     char output = 'Z';
 
-    displayTextFile("interface/settings.txt");
+    color(test_displayTextFile("interface/settings_logo.txt"),"red");
+    space();
+    
+    displayTextFile("interface/settings_menu.txt");
 
     while (userInput != 'q')
     {
         userInput = input();
     }
 
-    message("EXITING SETTINGS MENU");
+    color("EXITING SETTINGS MENU","red");
     //paramètres à définir
 
 }
@@ -356,6 +380,11 @@ void settings()
 void quit()
 {
     color(test_displayTextFile("interface/bye.txt"),"red");
+}
+
+void wrongKey()
+{
+    message("WRONG KEY!");
 }
 
 //affiche simplement un message
