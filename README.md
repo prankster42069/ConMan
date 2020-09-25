@@ -27,6 +27,7 @@ It takes the provided fields in the [fields/fields.txt] file and ask for user en
 ### - Delete contact
 ### - Search contact
 ### - Settings
+Settings are still to be listed before being able to code them into the program itself.
 
 ## Let's get deeper
 
@@ -37,3 +38,13 @@ It takes the provided fields in the [fields/fields.txt] file and ask for user en
 
 ### Config file
 Detailling the config file.
+Config file is empty for the moment, will be used soon.
+
+## You can help the project!
+You can help the ConMan projet in several ways :
+### Provide your suggestions:
+The program is still quite young, so I probably missed major things along the way.
+### Help with translations:
+An efficient language changing system still needs to be configured, but it will come soon.
+I'm quite a language guy (that has two meanings as I'm a programmer... :-) ), so I should be able to maintain the following languages by myself for now : French, English, Spanish, German and Esperanto.
+If you are good enough in any other language that could be included into the program, please contact me through GitHub.
