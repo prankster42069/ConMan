@@ -8,10 +8,11 @@
 
 using namespace std;
 
-string VERSION = "0.1alpha";
+string VERSION = "0.2alpha";
 
 string COLOR_WELCOME = "lightblue";
-string COLOR_VERSION = "green";
+string COLOR_QUOTE = "green";
+string COLOR_VERSION = "yellow";
 string COLOR_MENU = "green";
 
 
@@ -37,6 +38,8 @@ void settings();
 void quit();
 void wrongKey();
 
+void addTextToFile(string fichier, string chaine);
+
 int main()
 {
     char userInput = 'Z';
@@ -61,6 +64,7 @@ int main()
 void welcome()
 {
     color(test_displayTextFile("interface/welcome.txt"),COLOR_WELCOME);
+    color(test_displayTextFile("interface/random_quote.txt"), COLOR_QUOTE);
 }
 
 //affiche la version de CM
@@ -75,6 +79,7 @@ void version()
 void menu()
 {
     color("=======MAIN MENU=======", "purple");
+    space();
     displayTextFile("interface/menu.txt");
 }
 
@@ -117,6 +122,8 @@ char input()
         {letter = 'q';}
         else if (a == 'y' || a == 'Y')
         {letter = 'y';}
+        else
+        {letter = a;}
 
     } while (letter == 'Z');
 
@@ -200,7 +207,7 @@ void color(string chaine, string color)
     {i = 36;}
     //autres couleurs à ajouter
 
-    cout << "\033[" << i << "m" << chaine << "\033[0m" << endl;
+    cout << "\033[" << i << "m" << chaine << "\033[0m";
 }
 
 //aiguille vers la bonne fonction en fonction de la lettre entrée
@@ -257,6 +264,7 @@ void newContact()
 
     do {
         color("======NEW CONTACT======", "green");
+        space();
 
         bool firstSpace = true;
         bool secondSpace = true;
@@ -264,7 +272,7 @@ void newContact()
         string field1, field2;
 
         string current_field = "";
-        string answer;
+        string answer = "";
         string rapport = "";
 
         //prélèvement des champs dans le fichier 'fields'
@@ -275,9 +283,9 @@ void newContact()
             if (fields[i] == 32 || i == fields.length() - 1) //si la boucle rencontre un espace
             {
                 cout << "[" << current_field << "]" << "?" << endl;
-                cin >> answer;
 
-                //ajout du champ + sa réponse
+                getline(cin, answer);
+
                 rapport += current_field;
                 rapport += " : ";
                 rapport += answer;
@@ -307,6 +315,7 @@ void newContact()
 
     space();
     color("=====CONTACT FILE=====","yellow");
+    space();
     message(rapport);
     color("Is everything ok?[y/n/q]","red");
     space();
@@ -325,10 +334,7 @@ void newContact()
         MyFile.close();
 
         //ajout du nom du contact à la liste des contacts 'contact_list.txt'
-        ofstream MyFile1("database/contact_list.txt");
-
-        MyFile1 << field1 + " " + field2 + "\n";
-        MyFile1.close();
+        addTextToFile("database/contact_list.txt", field1 + " " + field2 + "\n");
 
         color("CONTACT CREATED!","green");
     }
@@ -392,4 +398,18 @@ void wrongKey()
 void message(string message)
 {
     cout << message << endl;
+}
+
+
+void addTextToFile(string fichier, string chaine)
+{
+    ofstream fout;
+    ifstream fin;
+    fin.open("database/contact_list.txt");
+    fout.open("database/contact_list.txt", ios::app);
+    if (fin.is_open())
+        fout << chaine;
+    fin.close();
+    fout.close();
+    string word;
 }
