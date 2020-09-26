@@ -7,14 +7,8 @@ This project is also aimed at making me more fluent and comfortable with C++ pro
 
 ## Overview
 ConMan is entirely terminal-based. It works with shortcuts to the main functionalities.
-
-For example, pressing [n] in the main menu lets you directly create a new contact.
-Efficient, isn't it?
-
-You don't even have to press Enter!
-
 The motto of ConMan is never to let you press a key you don't absolutely have to press.
-
+Less keys to enter means less time to enter each contact. And less time to enter each contact means more productivity.
 
 ## Main functionalities
 ### - List contacts
